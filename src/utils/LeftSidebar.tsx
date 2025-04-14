@@ -1,30 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./LeftSidebar.css";
 
-interface Team {
-  id: number;
-  nome: string;
-}
-
-interface LeftSidebarProps {
-  teams: Team[];
-  onTeamSelect: (team: Team) => void;
-}
-
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ teams, onTeamSelect }) => {
+const LeftSidebar: React.FC = () => {
   return (
     <div className="sidebar">
-      <h2>Times da NBA</h2>
+      <h2>infoNBA</h2>
       <ul>
-        {Array.isArray(teams) && teams.length > 0 ? (
-          teams.map((team) => (
-            <li key={team.id} onClick={() => onTeamSelect(team)}>
-              {team.nome}
-            </li>
-          ))
-        ) : (
-          <li>Nenhum time disponível</li>
-        )}
+        <li>
+          <Link to="/">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/times">Times</Link>
+        </li>
+        <li>
+          <Link to="/jogadores">Jogadores</Link>
+        </li>
       </ul>
     </div>
   );

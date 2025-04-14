@@ -2,10 +2,9 @@
 
 .sidebar {
   position: fixed;
-  top: 54px;
   left: 0;
   width: 240px;
-  height: calc(100% - 64px);
+  height: calc(100% - 0px);
   background-color: #1f2937;
   color: #e7d5e7;
   padding: 20px;
@@ -27,6 +26,11 @@
   cursor: pointer;
 }
 
-.sidebar li:hover {
+.sidebar a:hover {
   color: #ef4444;
+}
+
+a {
+  color: #e7d5e7;
+  outline: none;
 }
