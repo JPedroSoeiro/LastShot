@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+.sidebar {
+  position: fixed;
+  top: 54px;
+  left: 0;
+  width: 240px;
+  height: calc(100% - 64px);
+  background-color: #1f2937;
+  color: #e7d5e7;
+  padding: 20px;
+  z-index: 40;
+  font-family: "Source Sans 3";
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  color: #ef4444;
+}

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +10,7 @@ body,
 html {
   margin: 0;
   padding: 0;
+  background-color: #e7d5e7;
 }
 
 .open-btn {
@@ -21,4 +24,24 @@ html {
   border-radius: 4px;
   cursor: pointer;
   z-index: 10;
+}
+
+.main-layout {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 240px;
+  padding: 20px;
+  height: 90vh;
+  width: 85vw;
+}
+
+.teamsCard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
