@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./LeftSidebar.css";
+import lastShotLogo from "../assets/lastShotLogo.png";
 
 const LeftSidebar: React.FC = () => {
   return (
     <div className="sidebar">
-      <h2>infoNBA</h2>
+      <img src={lastShotLogo} alt="logo" width="150" height="150" />
+      <hr />
       <ul>
         <li>
           <Link to="/">Dashboard</Link>

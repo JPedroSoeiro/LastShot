@@ -12,10 +12,6 @@
   font-family: "Source Sans 3";
 }
 
-.sidebar h2 {
-  margin-bottom: 20px;
-}
-
 .sidebar ul {
   list-style-type: none;
   padding: 0;
@@ -24,6 +20,7 @@
 .sidebar li {
   margin: 5px 0;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .sidebar a:hover {
@@ -32,5 +29,13 @@
 
 a {
   color: #e7d5e7;
-  outline: none;
+  text-decoration: none;
+}
+
+.sidebar img {
+  margin: 10px;
+}
+
+.sidebar hr {
+  width: 100%;
 }

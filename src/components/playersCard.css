@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+.playersCard {
+  background-color: #1f2937;
+  padding: 10px;
+  height: 150px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  color: #e7d5e7;
+  font-family: "Source Sans 3";
+}
+
+.infoGeral {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.infoP {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 90%;
+  width: 100%;
+}
+
+.infoPessoais {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.stats {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  background-color: rgb(239, 13, 13);
+  padding: 5px;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+hr {
+  width: 400px;
+}
