@@ -3,8 +3,13 @@ import React, { useEffect, useState } from "react";
 import PlayerCard from "../components/playersCard";
 import { getAllPlayers } from "../services/teamService";
 
+interface Player {
+  id: number;
+  name: string;
+}
+
 const Players: React.FC = () => {
-  const [players, setPlayers] = useState<[]>([]);
+  const [players, setPlayers] = useState<Player[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
@@ -40,8 +45,8 @@ const Players: React.FC = () => {
       </form>
       <div className="cards">
         {filteredPlayers.length > 0 ? (
-          filteredPlayers.map((players) => (
-            <PlayerCard key={players.id} players={players} />
+          filteredPlayers.map((player) => (
+            <PlayerCard key={player.id} players={player} />
           ))
         ) : (
           <h2>Nenhum jogador encontrado.</h2>

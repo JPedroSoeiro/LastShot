@@ -17,7 +17,6 @@ html {
   position: absolute;
   top: 90px;
   left: 16px;
-  background-color: #3b82f6;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -39,7 +38,7 @@ html {
 }
 
 .buscador {
-  height: 15%;
+  height: 7%;
   width: 100%;
   display: flex;
   justify-content: center;

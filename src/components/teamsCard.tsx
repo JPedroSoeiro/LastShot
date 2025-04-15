@@ -1,6 +1,5 @@
 import React from "react";
 import "./teamsCard.css";
-import { FaArrowDown } from "react-icons/fa6";
 
 interface Team {
   id: number;
@@ -29,12 +28,11 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
         <img
           src={team.logo}
           alt={`${team.nome} logo`}
-          width="150"
-          height="150"
+          width="120"
+          height="120"
         />
       )}
       <div className="info">
-        <hr />
         <h1>{team.nome}</h1>
 
         <p>
@@ -49,9 +47,6 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
         <p>
           <strong>Arena:</strong> {team.arena}
         </p>
-        <button>
-          Mais <FaArrowDown />
-        </button>
       </div>
     </div>
   );
