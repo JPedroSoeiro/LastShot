@@ -134,3 +134,30 @@ strong {
 em {
   font-style: italic;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 8px;
+}
+
+.pagination button {
+  background-color: #1f2937;
+  color: #e7d5e7;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #374151;
+}
+
+.pagination button.active {
+  background-color: #ef0d0d;
+  color: white;
+  font-weight: bold;
+}
