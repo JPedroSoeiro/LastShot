@@ -13,6 +13,7 @@
   color: #e7d5e7;
   font-family: "Source Sans 3";
   font-size: 11px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .info {

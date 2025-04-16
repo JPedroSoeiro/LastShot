@@ -21,6 +21,8 @@ interface Team {
 const Teams: React.FC = () => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const teamsPerPage = 10;
 
   useEffect(() => {
     getAllTeams()
@@ -36,6 +38,17 @@ const Teams: React.FC = () => {
     team.nome.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const totalPages = Math.ceil(filteredTeams.length / teamsPerPage);
+  const startIndex = (currentPage - 1) * teamsPerPage;
+  const currentTeams = filteredTeams.slice(
+    startIndex,
+    startIndex + teamsPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <form
@@ -49,17 +62,38 @@ const Teams: React.FC = () => {
             type="text"
             placeholder="Escolha ou pesquise um time"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
           />
         </div>
       </form>
+
       <div className="cards">
-        {filteredTeams.length > 0 ? (
-          filteredTeams.map((team) => <TeamCard key={team.id} team={team} />)
+        {currentTeams.length > 0 ? (
+          currentTeams.map((team) => <TeamCard key={team.id} team={team} />)
         ) : (
           <h2>Nenhum time encontrado.</h2>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          {[...Array(totalPages)].map((_, index) => {
+            const page = index + 1;
+            return (
+              <button
+                key={page}
+                className={page === currentPage ? "active" : ""}
+                onClick={() => handlePageChange(page)}
+              >
+                {page}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 };

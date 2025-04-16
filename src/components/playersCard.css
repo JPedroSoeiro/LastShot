@@ -11,6 +11,7 @@
   border-radius: 10px;
   color: #e7d5e7;
   font-family: "Source Sans 3";
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .infoGeral {

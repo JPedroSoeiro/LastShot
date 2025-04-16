@@ -89,7 +89,7 @@ input {
   font-family: "Arial", sans-serif;
   margin: 0 auto;
   padding: 20px;
-  background-color: #1f2937;
+  background-color: #e7d5e7;
 }
 
 .nba-header {
@@ -160,4 +160,105 @@ em {
   background-color: #ef0d0d;
   color: white;
   font-weight: bold;
+}
+
+.nba-logo {
+  width: 70px;
+  height: 70px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.nba-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #dcdcdc;
+  background: linear-gradient(90deg, #1f2937 0%, #374151 100%);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.nba-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #e7d5e7;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.history-text,
+.organization-text {
+  font-size: 1.2rem;
+  color: #e7d5e7;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-width: 900;
+}
+
+.dashboard-section {
+  border-radius: 16px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.section-content {
+  color: #e7d5e7;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.section-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: #e7d5e7;
+}
+
+.legends-list {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e7d5e7;
+}
+
+.section-history {
+  background: linear-gradient(135deg, #1f2937, #374151);
+}
+
+.section-legends {
+  background: linear-gradient(135deg, #3b0a75, #6d28d9);
+}
+
+.section-structure {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.section-dynasties {
+  background: linear-gradient(135deg, #7c2d12, #b45309);
+}
+
+.section-global {
+  background: linear-gradient(135deg, #065f46, #10b981);
+}
+
+.section-culture {
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
 }
