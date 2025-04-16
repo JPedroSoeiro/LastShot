@@ -87,15 +87,52 @@ const Players: React.FC = () => {
 
       {totalPages > 1 && (
         <div className="pagination">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? "active" : ""}
-            >
-              {index + 1}
-            </button>
-          ))}
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Anterior
+          </button>
+
+          {currentPage > 3 && (
+            <>
+              <button onClick={() => handlePageChange(1)}>1</button>
+              {currentPage > 4 && <span>...</span>}
+            </>
+          )}
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter(
+              (page) =>
+                page === currentPage ||
+                page === currentPage - 1 ||
+                page === currentPage + 1
+            )
+            .map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={currentPage === page ? "active" : ""}
+              >
+                {page}
+              </button>
+            ))}
+
+          {currentPage < totalPages - 2 && (
+            <>
+              {currentPage < totalPages - 3 && <span>...</span>}
+              <button onClick={() => handlePageChange(totalPages)}>
+                {totalPages}
+              </button>
+            </>
+          )}
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Próxima
+          </button>
         </div>
       )}
     </>
