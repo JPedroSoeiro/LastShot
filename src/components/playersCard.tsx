@@ -1,5 +1,6 @@
 import React from "react";
 import "./playersCard.css";
+import { CgArrowDownR } from "react-icons/cg";
 
 interface players {
   id: number;
@@ -35,22 +36,32 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players }) => {
           height="120"
         />
       )}
-      <div className="infoGeral">
-        <div className="infoP">
-          <h1>{players.name}</h1>
-          <div className="infoPessoais">
-            <p>
-              <strong>Idade:</strong> {players.age}
-            </p>
-            <p>
-              <strong>Time:</strong> {players.team}
-            </p>
-            <p>
-              <strong>Posição:</strong> {players.position}
-            </p>
-          </div>
+      <div className="infoP">
+        <h1>{players.name}</h1>
+        <div className="infoPessoais">
+          <p>
+            <strong>Idade:</strong> {players.age}
+          </p>
+          <p>
+            <strong>Time:</strong> {players.team}
+          </p>
+          <p>
+            <strong>Posição:</strong> {players.position}
+          </p>
         </div>
-        <div className="stats">
+        <button className="">
+          <CgArrowDownR />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PlayerCard;
+
+{
+  /* 
+       <div className="stats">
           <p>
             <strong>PPG:</strong> {players.careerStats.PPG}
           </p>
@@ -76,9 +87,5 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players }) => {
             <strong>FT%:</strong> {players.careerStats.FT}
           </p>
         </div>
-      </div>
-    </div>
-  );
-};
-
-export default PlayerCard;
+        */
+}

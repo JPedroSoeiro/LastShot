@@ -51,6 +51,9 @@ const Teams: React.FC = () => {
 
   return (
     <>
+      <div>
+        <h1 className="title">Times da NBA</h1>
+      </div>
       <form
         className="buscador"
         onSubmit={(e) => {

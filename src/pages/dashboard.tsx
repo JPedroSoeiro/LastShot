@@ -6,7 +6,7 @@ const Dashboard: React.FC = () => {
     <div className="nba-container">
       <section className="dashboard-section section-history">
         <div className="section-content">
-          <h2 className="section-title">📜 História da NBA</h2>
+          <h2 className="section-title"> História da NBA</h2>
           <p className="section-text">
             A NBA nasceu em 1946 como BAA e se fundiu com a NBL em 1949. Desde
             então, se transformou em uma das maiores ligas esportivas do mundo.
@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
 
       <section className="dashboard-section section-legends">
         <div className="section-content">
-          <h2 className="section-title">🏆 Maiores Lendas</h2>
+          <h2 className="section-title"> Maiores Lendas</h2>
           <ul className="legends-list">
             <li>
               <strong>Michael Jordan</strong> — Símbolo da excelência
@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
 
       <section className="dashboard-section section-structure">
         <div className="section-content">
-          <h2 className="section-title">🏛️ Estrutura da Liga</h2>
+          <h2 className="section-title"> Estrutura da Liga</h2>
           <p className="section-text">
             A NBA possui <strong>30 equipes</strong> divididas em duas
             conferências: Leste e Oeste. Cada conferência é dividida em 3
@@ -64,7 +64,7 @@ const Dashboard: React.FC = () => {
 
       <section className="dashboard-section section-dynasties">
         <div className="section-content">
-          <h2 className="section-title">👑 Títulos e Dinastias</h2>
+          <h2 className="section-title"> Títulos e Dinastias</h2>
           <p className="section-text">
             Ao longo da história, algumas franquias dominaram eras inteiras: os{" "}
             <strong>Celtics</strong> com 17 títulos, os <strong>Lakers</strong>{" "}
@@ -72,15 +72,15 @@ const Dashboard: React.FC = () => {
           </p>
           <p className="section-text">
             Dinastias recentes incluem o <strong>Golden State Warriors</strong>,
-            que conquistou 4 títulos entre 2015 e 2022, com Steph Curry, Klay
-            Thompson e Draymond Green.
+            que conquistou 4 títulos entre 2015 e 2022, com{" "}
+            <strong>Steph Curry</strong>, Klay Thompson e Draymond Green.
           </p>
         </div>
       </section>
 
       <section className="dashboard-section section-global">
         <div className="section-content">
-          <h2 className="section-title">🌍 Expansão Global</h2>
+          <h2 className="section-title"> Expansão Global</h2>
           <p className="section-text">
             A NBA é a liga mais globalizada do planeta. Jogadores de mais de 40
             países já atuaram na liga, como <strong>Dirk Nowitzki</strong>,{" "}
@@ -96,7 +96,7 @@ const Dashboard: React.FC = () => {
 
       <section className="dashboard-section section-culture">
         <div className="section-content">
-          <h2 className="section-title">🎤 Cultura e Impacto</h2>
+          <h2 className="section-title"> Cultura e Impacto</h2>
           <p className="section-text">
             A NBA vai além das quadras: é referência em moda, música, redes
             sociais e ativismo social. Jogadores como{" "}

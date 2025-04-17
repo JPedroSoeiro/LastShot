@@ -3,30 +3,23 @@
 .playersCard {
   background-color: #1f2937;
   padding: 10px;
-  height: 130px;
-  width: 90%;
+  height: 60%;
+  width: 24%;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
   border-radius: 10px;
   color: #e7d5e7;
   font-family: "Source Sans 3";
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.infoGeral {
-  width: 80%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-}
-
 .infoP {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   height: 90%;
   width: 100%;
 }
@@ -37,11 +30,15 @@
   flex-direction: column;
 }
 
-.stats {
+ {
+  /* 
+  .stats {
   height: 10%;
   width: 100%;
   display: flex;
   justify-content: space-around;
+}
+*/
 }
 
 button {

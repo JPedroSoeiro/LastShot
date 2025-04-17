@@ -26,7 +26,7 @@ const Players: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     getAllPlayers()
@@ -56,6 +56,9 @@ const Players: React.FC = () => {
 
   return (
     <>
+      <div>
+        <h1 className="title">Jogadores da NBA</h1>
+      </div>
       <form
         className="buscador"
         onSubmit={(e) => {
