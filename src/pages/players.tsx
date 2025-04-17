@@ -1,31 +1,16 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
 import PlayerCard from "../components/playersCard";
-import { getAllPlayers } from "../services/teamService";
-
-interface Player {
-  id: number;
-  name: string;
-  age: number;
-  position: string;
-  team: string;
-  image?: string;
-  careerStats: {
-    PPG: number;
-    RPG: number;
-    APG: number;
-    SPG: number;
-    BPG: number;
-    FG: number;
-    FG3: number;
-    FT: number;
-  };
-}
+import { getAllPlayers, getAllTeams } from "../services/teamService";
+import { iPlayer } from "../interfaces/iPlayer";
+import { iTeam } from "../interfaces/iTeam";
 
 const Players: React.FC = () => {
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [players, setPlayers] = useState<iPlayer[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [teams, setTeams] = useState<iTeam[]>([]);
+  const [selectedTeam, setSelectedTeam] = useState<string>("");
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -34,13 +19,33 @@ const Players: React.FC = () => {
         setPlayers(response.data.players);
       })
       .catch((error) => {
+        console.error("Erro ao buscar os jogadores:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    getAllTeams()
+      .then((response) => {
+        setTeams(response.data.teams);
+      })
+      .catch((error) => {
         console.error("Erro ao buscar os times:", error);
       });
   }, []);
 
-  const filteredPlayers = players.filter((player) =>
-    player.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPlayers = players.filter((player) => {
+    const nameMatch = player.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    const selectedTeamName = selectedTeam
+      ? teams.find((team) => String(team.id) === selectedTeam)?.nome
+      : null;
+
+    const teamMatch = selectedTeam ? player.team === selectedTeamName : true;
+
+    return nameMatch && teamMatch;
+  });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -59,6 +64,7 @@ const Players: React.FC = () => {
       <div>
         <h1 className="title">Jogadores da NBA</h1>
       </div>
+
       <form
         className="buscador"
         onSubmit={(e) => {
@@ -77,6 +83,23 @@ const Players: React.FC = () => {
           />
         </div>
       </form>
+
+      <div className="filtros">
+        <select
+          value={selectedTeam}
+          onChange={(e) => {
+            setSelectedTeam(e.target.value);
+            setCurrentPage(1);
+          }}
+        >
+          <option value="">Todos os times</option>
+          {teams.map((team) => (
+            <option key={team.id} value={String(team.id)}>
+              {team.nome}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="cards">
         {currentPlayers.length > 0 ? (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./LeftSidebar.css";
 import lastShotLogo from "../assets/lastShotLogo.png";
 
@@ -10,13 +10,34 @@ const LeftSidebar: React.FC = () => {
       <hr />
       <ul>
         <li>
-          <Link to="/">Dashboard</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "nav-link active" : "nav-link"
+            }
+          >
+            Dashboard
+          </NavLink>
         </li>
         <li>
-          <Link to="/times">Times</Link>
+          <NavLink
+            to="/times"
+            className={({ isActive }) =>
+              isActive ? "nav-link active" : "nav-link"
+            }
+          >
+            Times
+          </NavLink>
         </li>
         <li>
-          <Link to="/jogadores">Jogadores</Link>
+          <NavLink
+            to="/jogadores"
+            className={({ isActive }) =>
+              isActive ? "nav-link active" : "nav-link"
+            }
+          >
+            Jogadores
+          </NavLink>
         </li>
       </ul>
     </div>

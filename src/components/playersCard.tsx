@@ -1,6 +1,5 @@
 import React from "react";
 import "./playersCard.css";
-import { CgArrowDownR } from "react-icons/cg";
 
 interface players {
   id: number;
@@ -49,9 +48,6 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players }) => {
             <strong>Posição:</strong> {players.position}
           </p>
         </div>
-        <button className="">
-          <CgArrowDownR />
-        </button>
       </div>
     </div>
   );

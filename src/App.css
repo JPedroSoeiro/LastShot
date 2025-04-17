@@ -265,3 +265,17 @@ em {
 .title {
   font-family: "Source Sans 3";
 }
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.filtros select {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 6px;
+  background-color: #1f2937;
+  color: #e7d5e7;
+}

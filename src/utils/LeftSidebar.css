@@ -39,3 +39,7 @@ a {
 .sidebar hr {
   width: 100%;
 }
+
+.nav-link.active {
+  color: #ef0d0d;
+}

@@ -2,24 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../App.css";
 import TeamCard from "../components/teamsCard";
 import { getAllTeams } from "../services/teamService";
-
-interface Team {
-  id: number;
-  nome: string;
-  cidade: string;
-  sigla: string;
-  ano_fundacao: number;
-  arena: string;
-  titulos: {
-    NBA: number;
-    Conferencias: number;
-    Divisoes: number;
-  };
-  principais_jogadores: string[];
-}
+import { iTeam } from "../interfaces/iTeam";
 
 const Teams: React.FC = () => {
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teams, setTeams] = useState<iTeam[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const teamsPerPage = 10;
