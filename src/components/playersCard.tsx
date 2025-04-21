@@ -22,19 +22,30 @@ interface players {
 
 interface PlayerCardProps {
   players: players;
+  teamLogo?: string;
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ players }) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
   return (
     <div className="playersCard">
-      {players.image && (
-        <img
-          src={players.image}
-          alt={`${players.name} logo`}
-          width="80"
-          height="120"
-        />
-      )}
+      <div className="topo">
+        <div className="space"></div>
+        {players.image && (
+          <img
+            src={players.image}
+            alt={`${players.name}`}
+            width="80"
+            height="120"
+          />
+        )}
+        {teamLogo && (
+          <img
+            src={teamLogo}
+            alt={`Logo do ${players.team}`}
+            className="team-logo"
+          />
+        )}
+      </div>
       <div className="infoP">
         <h1>{players.name}</h1>
         <div className="infoPessoais">
@@ -54,34 +65,3 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players }) => {
 };
 
 export default PlayerCard;
-
-{
-  /* 
-       <div className="stats">
-          <p>
-            <strong>PPG:</strong> {players.careerStats.PPG}
-          </p>
-          <p>
-            <strong>RPG:</strong> {players.careerStats.RPG}
-          </p>
-          <p>
-            <strong>APG:</strong> {players.careerStats.APG}
-          </p>
-          <p>
-            <strong>SPG:</strong> {players.careerStats.SPG}
-          </p>
-          <p>
-            <strong>BPG:</strong> {players.careerStats.BPG}
-          </p>
-          <p>
-            <strong>FG%:</strong> {players.careerStats.FG}
-          </p>
-          <p>
-            <strong>3FG%:</strong> {players.careerStats.FG3}
-          </p>
-          <p>
-            <strong>FT%:</strong> {players.careerStats.FT}
-          </p>
-        </div>
-        */
-}

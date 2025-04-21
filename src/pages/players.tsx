@@ -103,9 +103,17 @@ const Players: React.FC = () => {
 
       <div className="cards">
         {currentPlayers.length > 0 ? (
-          currentPlayers.map((player) => (
-            <PlayerCard key={player.id} players={player} />
-          ))
+          currentPlayers.map((player) => {
+            const matchedTeam = teams.find((team) => team.nome === player.team);
+            const teamLogo = matchedTeam?.logo || "";
+            return (
+              <PlayerCard
+                key={player.id}
+                players={player}
+                teamLogo={teamLogo}
+              />
+            );
+          })
         ) : (
           <h2>Nenhum jogador encontrado.</h2>
         )}
