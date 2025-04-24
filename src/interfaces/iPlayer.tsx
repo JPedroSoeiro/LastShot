@@ -5,14 +5,4 @@ export interface iPlayer {
   position: string;
   team: string;
   image?: string;
-  careerStats: {
-    PPG: number;
-    RPG: number;
-    APG: number;
-    SPG: number;
-    BPG: number;
-    FG: number;
-    FG3: number;
-    FT: number;
-  };
 }

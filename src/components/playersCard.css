@@ -65,3 +65,18 @@ hr {
   height: 40px;
   margin-top: 5px;
 }
+
+.btn-delete {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn-delete:hover {
+  background-color: #cc0000;
+}

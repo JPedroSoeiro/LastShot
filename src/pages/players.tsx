@@ -1,7 +1,7 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
 import PlayerCard from "../components/playersCard";
-import { getAllPlayers, getAllTeams } from "../services/teamService";
+import { getAllPlayers, getAllTeams } from "../services/dataService";
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 
@@ -14,23 +14,19 @@ const Players: React.FC = () => {
   const itemsPerPage = 8;
 
   useEffect(() => {
-    getAllPlayers()
-      .then((response) => {
-        setPlayers(response.data.players);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar os jogadores:", error);
-      });
+    const loadPlayers = async () => {
+      const data = await getAllPlayers();
+      setPlayers(data);
+    };
+    loadPlayers();
   }, []);
 
   useEffect(() => {
-    getAllTeams()
-      .then((response) => {
-        setTeams(response.data.teams);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar os times:", error);
-      });
+    const loadTeams = async () => {
+      const data = await getAllTeams();
+      setTeams(data);
+    };
+    loadTeams();
   }, []);
 
   const filteredPlayers = players.filter((player) => {

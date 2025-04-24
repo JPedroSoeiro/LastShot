@@ -5,10 +5,5 @@ export interface iTeam {
   sigla: string;
   ano_fundacao: number;
   arena: string;
-  titulos: {
-    NBA: number;
-    Conferencias: number;
-    Divisoes: number;
-  };
-  principais_jogadores: string[];
+  logo: string;
 }

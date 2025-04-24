@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import TeamCard from "../components/teamsCard";
-import { getAllTeams } from "../services/teamService";
+import { getAllTeams } from "../services/dataService";
 import { iTeam } from "../interfaces/iTeam";
 
 const Teams: React.FC = () => {
@@ -11,13 +11,11 @@ const Teams: React.FC = () => {
   const teamsPerPage = 10;
 
   useEffect(() => {
-    getAllTeams()
-      .then((response) => {
-        setTeams(response.data.teams);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar os times:", error);
-      });
+    const fetchTeams = async () => {
+      const data = await getAllTeams();
+      setTeams(data);
+    };
+    fetchTeams();
   }, []);
 
   const filteredTeams = teams.filter((team) =>
@@ -40,6 +38,7 @@ const Teams: React.FC = () => {
       <div>
         <h1 className="title">Times da NBA</h1>
       </div>
+
       <form
         className="buscador"
         onSubmit={(e) => {
@@ -69,18 +68,15 @@ const Teams: React.FC = () => {
 
       {totalPages > 1 && (
         <div className="pagination">
-          {[...Array(totalPages)].map((_, index) => {
-            const page = index + 1;
-            return (
-              <button
-                key={page}
-                className={page === currentPage ? "active" : ""}
-                onClick={() => handlePageChange(page)}
-              >
-                {page}
-              </button>
-            );
-          })}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={page === currentPage ? "active" : ""}
+            >
+              {page}
+            </button>
+          ))}
         </div>
       )}
     </>

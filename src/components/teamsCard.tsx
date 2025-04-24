@@ -9,12 +9,6 @@ interface Team {
   ano_fundacao: number;
   arena: string;
   logo?: string;
-  titulos: {
-    NBA: number;
-    Conferencias: number;
-    Divisoes: number;
-  };
-  principais_jogadores: string[];
 }
 
 interface TeamCardProps {

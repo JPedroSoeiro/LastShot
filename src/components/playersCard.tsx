@@ -1,31 +1,32 @@
 import React from "react";
 import "./playersCard.css";
 
-interface players {
+interface Player {
   id: number;
   name: string;
   age: number;
   position: string;
   team: string;
   image?: string;
-  careerStats: {
-    PPG: number;
-    RPG: number;
-    APG: number;
-    SPG: number;
-    BPG: number;
-    FG: number;
-    FG3: number;
-    FT: number;
-  };
 }
 
 interface PlayerCardProps {
-  players: players;
+  players: Player;
   teamLogo?: string;
+  onDelete?: (id: number) => void; // 🔁 nova prop
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({
+  players,
+  teamLogo,
+  onDelete,
+}) => {
+  const handleDelete = () => {
+    if (window.confirm(`Deseja realmente excluir ${players.name}?`)) {
+      onDelete?.(players.id);
+    }
+  };
+
   return (
     <div className="playersCard">
       <div className="topo">
@@ -39,11 +40,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
           />
         )}
         {teamLogo && (
-          <img
-            src={teamLogo}
-            alt={`Logo do ${players.team}`}
-            className="team-logo"
-          />
+          <img src={teamLogo} alt={`${players.team}`} className="team-logo" />
         )}
       </div>
       <div className="infoP">
@@ -59,6 +56,11 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
             <strong>Posição:</strong> {players.position}
           </p>
         </div>
+        {onDelete && (
+          <button className="btn-delete" onClick={handleDelete}>
+            Excluir
+          </button>
+        )}
       </div>
     </div>
   );
