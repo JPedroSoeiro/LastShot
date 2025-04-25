@@ -4,7 +4,6 @@ import PlayerCard from "../components/playersCard";
 import { getAllPlayers, getAllTeams } from "../services/dataService";
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
-import PlayerModal from "../components/playerModal";
 
 const Players: React.FC = () => {
   const [players, setPlayers] = useState<iPlayer[]>([]);
@@ -12,7 +11,6 @@ const Players: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [teams, setTeams] = useState<iTeam[]>([]);
   const [selectedTeam, setSelectedTeam] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -99,10 +97,8 @@ const Players: React.FC = () => {
             ))}
           </select>
         </div>
-        <button className="adicao" onClick={() => setIsModalOpen(true)}>
-          Adicionar jogador
-        </button>
       </div>
+
       <div className="cards">
         {currentPlayers.length > 0 ? (
           currentPlayers.map((player) => {
@@ -171,11 +167,6 @@ const Players: React.FC = () => {
           </button>
         </div>
       )}
-      <PlayerModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        teams={teams}
-      />
     </>
   );
 };

@@ -1,16 +1,9 @@
-import { supabase } from "../services/supabaseClient";
-import "../interfaces/iPlayer";
+import { supabase } from "./supabaseClient";
+import { iPlayer } from "../interfaces/iPlayer";
+import { iTeam } from "../interfaces/iTeam";
 
-export const getAllTeams = async () => {
-  const { data, error } = await supabase.from("teams").select("*");
-  if (error) {
-    console.error("Erro ao buscar times:", error);
-    return [];
-  }
-  return data;
-};
-
-export const getAllPlayers = async () => {
+// Função para buscar todos os jogadores
+export const getAllPlayers = async (): Promise<iPlayer[]> => {
   const { data, error } = await supabase.from("players").select("*");
   if (error) {
     console.error("Erro ao buscar jogadores:", error);
@@ -19,16 +12,56 @@ export const getAllPlayers = async () => {
   return data;
 };
 
-export const createPlayer = async (playerData: iPlayer) => {
-  const response = await fetch("http://localhost:3000/api/players", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(playerData),
-  });
-
-  if (!response.ok) {
-    throw new Error("Erro ao criar jogador!");
+// Função para buscar um jogador específico pelo ID
+export const getPlayerById = async (id: number): Promise<iPlayer | null> => {
+  const { data, error } = await supabase
+    .from("players")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) {
+    console.error("Erro ao buscar jogador:", error);
+    return null;
   }
+  return data;
+};
 
-  return response.json();
+// Função para atualizar os dados de um jogador existente
+export const updatePlayer = async (
+  id: number,
+  updatedData: Partial<iPlayer>
+) => {
+  const { error } = await supabase
+    .from("players")
+    .update(updatedData)
+    .eq("id", id); // Verifique o ID do jogador
+  if (error) {
+    console.error("Erro ao atualizar jogador:", error);
+  }
+};
+
+// Função para inserir um novo jogador
+export const insertPlayer = async (newPlayer: Omit<iPlayer, "id">) => {
+  const { error } = await supabase.from("players").insert([newPlayer]);
+  if (error) {
+    console.error("Erro ao inserir jogador:", error);
+  }
+};
+
+// Função para excluir um jogador pelo ID
+export const deletePlayerById = async (id: number) => {
+  const { error } = await supabase.from("players").delete().eq("id", id);
+  if (error) {
+    console.error("Erro ao excluir jogador:", error);
+  }
+};
+
+// Função para buscar todos os times
+export const getAllTeams = async (): Promise<iTeam[]> => {
+  const { data, error } = await supabase.from("teams").select("*");
+  if (error) {
+    console.error("Erro ao buscar times:", error);
+    return [];
+  }
+  return data;
 };

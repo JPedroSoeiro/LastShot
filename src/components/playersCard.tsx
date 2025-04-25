@@ -13,20 +13,9 @@ interface Player {
 interface PlayerCardProps {
   players: Player;
   teamLogo?: string;
-  onDelete?: (id: number) => void; // 🔁 nova prop
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({
-  players,
-  teamLogo,
-  onDelete,
-}) => {
-  const handleDelete = () => {
-    if (window.confirm(`Deseja realmente excluir ${players.name}?`)) {
-      onDelete?.(players.id);
-    }
-  };
-
+const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
   return (
     <div className="playersCard">
       <div className="topo">
@@ -56,11 +45,9 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
             <strong>Posição:</strong> {players.position}
           </p>
         </div>
-        {onDelete && (
-          <button className="btn-delete" onClick={handleDelete}>
-            Excluir
-          </button>
-        )}
+        <button>
+          <a href={`/jogadores/${players.id}`}>Editar</a>
+        </button>
       </div>
     </div>
   );
