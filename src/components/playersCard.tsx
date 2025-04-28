@@ -35,7 +35,9 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
             height="120"
           />
         )}
-        {teamLogo && (
+        {teamLogo ? (
+          <img src={teamLogo} alt={`${players.team}`} className="team-logo" />
+        ) : (
           <img src={teamLogo} alt={`${players.team}`} className="team-logo" />
         )}
       </div>
@@ -49,7 +51,8 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
             <strong>Time:</strong> {players.team}
           </p>
           <p>
-            <strong>Posição:</strong> {players.position}
+            <strong>Posição:</strong>{" "}
+            {players.position ? players.position : "Sem posição."}
           </p>
         </div>
 

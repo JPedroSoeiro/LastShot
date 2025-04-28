@@ -125,7 +125,7 @@ const Players: React.FC = () => {
 
         <div className="adicionar-jogador-container">
           <button className="adicionar-jogador-btn">
-            <a href={`/jogadores/new`}>Adicionar Jogador</a>
+            <a href={`/jogadores/create`}>Adicionar Jogador</a>
           </button>
         </div>
       </div>

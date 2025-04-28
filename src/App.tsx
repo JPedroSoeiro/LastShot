@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <Route index element={<Dashboard />} />
         <Route path="times" element={<Teams />} />
         <Route path="jogadores" element={<Players />} />
-        <Route path="jogadores/new" element={<FormCreate />} />
+        <Route path="jogadores/create" element={<FormCreate />} />
         <Route path="jogadores/:id" element={<FormEdit />} />
       </Route>
     </Routes>

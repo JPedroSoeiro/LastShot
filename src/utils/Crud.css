@@ -4,8 +4,13 @@ h1 {
   font-family: "Source Sans 3";
 }
 
+h3 {
+  font-family: "Source Sans 3";
+  color: #e7d5e7;
+}
+
 hr {
-  width: 21%;
+  width: 20.5%;
   height: 1px;
   border: 0px;
   border-top: 1px solid #111827;
@@ -73,6 +78,7 @@ hr {
 .editForm {
   max-width: 80%;
   margin: 0 auto;
+  margin-top: 6%;
   padding: 20px;
   background-color: #111827;
   border-radius: 10px;
@@ -91,4 +97,17 @@ hr {
 
 .editForm button:hover {
   background-color: #7a2baf;
+}
+
+.returnButton {
+  margin-top: 2%;
+  padding: 10px 30px;
+  font-family: "Source Sans 3";
+  font-size: 15px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
