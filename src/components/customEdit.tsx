@@ -1,5 +1,5 @@
 import React from "react";
-import "../utils/crud.css";
+import "../utils/Crud.css";
 
 interface CustomInputProps {
   type: string;
@@ -9,7 +9,7 @@ interface CustomInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({
+const CustomEdit: React.FC<CustomInputProps> = ({
   type,
   name,
   placeholder,
@@ -17,8 +17,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
   onChange,
 }) => {
   return (
-    <div>
+    <div className="custom-input-container">
       <input
+        className="custom-input-field"
         type={type}
         name={name}
         placeholder={placeholder}
@@ -29,4 +30,4 @@ const CustomInput: React.FC<CustomInputProps> = ({
   );
 };
 
-export default CustomInput;
+export default CustomEdit;

@@ -13,9 +13,16 @@ interface Player {
 interface PlayerCardProps {
   players: Player;
   teamLogo?: string;
+  onPlayerUpdate: (updatedPlayer: Player) => void;
+  onPlayerDelete: (id: number) => void; // NOVO
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({
+  players,
+  teamLogo,
+  onPlayerUpdate,
+  onPlayerDelete,
+}) => {
   return (
     <div className="playersCard">
       <div className="topo">
@@ -45,9 +52,28 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ players, teamLogo }) => {
             <strong>Posição:</strong> {players.position}
           </p>
         </div>
-        <button>
-          <a href={`/jogadores/${players.id}`}>Editar</a>
-        </button>
+
+        <div className="botoes">
+          <button>
+            <a
+              href={`/jogadores/${players.id}`}
+              onClick={() => onPlayerUpdate(players)}
+            >
+              Editar
+            </a>
+          </button>
+          <button
+            onClick={() => {
+              if (
+                window.confirm("Tem certeza que quer deletar este jogador?")
+              ) {
+                onPlayerDelete(players.id);
+              }
+            }}
+          >
+            Deletar
+          </button>
+        </div>
       </div>
     </div>
   );

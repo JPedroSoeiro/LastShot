@@ -1,45 +1,94 @@
-input {
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+h1 {
+  font-family: "Source Sans 3";
+}
+
+hr {
+  width: 21%;
+  height: 1px;
+  border: 0px;
+  border-top: 1px solid #111827;
+}
+
+.custom-input-container {
   width: 100%;
-  padding: 10px 15px;
-  margin: 10px 0;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: transparent;
-  border: 2px solid #38ef7d;
+  margin-bottom: 20px;
+}
+
+.custom-input-field {
+  width: 100%;
+  padding: 12px 16px;
   border-radius: 8px;
+  border: 2px solid #374151;
+  background-color: #1f2937;
+  color: #e7d5e7;
+  font-size: 16px;
+  font-family: "Source Sans 3", sans-serif;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-input::placeholder {
-  color: #9b9b9b;
-  opacity: 0.7;
+.custom-input-field:focus {
+  border-color: #9333ea;
+  background-color: #111827;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.4);
 }
 
-select {
+.custom-input-field::placeholder {
+  color: #9ca3af;
+}
+
+.custom-select-field {
   width: 100%;
-  padding: 10px 15px;
-  margin: 10px 0;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: transparent;
-  border: 2px solid #38ef7d;
+  padding: 12px 16px;
   border-radius: 8px;
+  border: 2px solid #374151;
+  background-color: #1f2937;
+  color: #e7d5e7;
+  font-size: 16px;
+  font-family: "Source Sans 3", sans-serif;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'%23e7d5e7'%20viewBox%3D'0%200%2024%2024'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
-select::placeholder {
-  color: #9b9b9b;
-  opacity: 0.7;
+.custom-select-field:focus {
+  border-color: #9333ea;
+  background-color: #111827;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.4);
 }
 
-input:focus {
-  border-color: #11998e;
-  box-shadow: 0 0 8px rgba(17, 153, 142, 0.5);
+.custom-select-field option {
+  background-color: #1f2937;
+  color: #e7d5e7;
+  font-size: 16px;
 }
 
-div {
-  width: 100%;
-  max-width: 500px;
+.editForm {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #111827;
+  border-radius: 10px;
+}
+
+.editForm button {
+  padding: 12px 20px;
+  background-color: #9333ea;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editForm button:hover {
+  background-color: #7a2baf;
 }

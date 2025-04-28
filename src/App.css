@@ -294,3 +294,18 @@ em {
   background-color: #1f2937;
   color: #e7d5e7;
 }
+
+.adicionar-jogador-btn {
+  padding: 10px 20px;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.adicionar-jogador-btn:hover {
+  background-color: #ef0d0d;
+}

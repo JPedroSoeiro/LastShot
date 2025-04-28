@@ -1,7 +1,11 @@
-import "../App.css";
 import React, { useEffect, useState } from "react";
 import PlayerCard from "../components/playersCard";
-import { getAllPlayers, getAllTeams } from "../services/dataService";
+import {
+  getAllPlayers,
+  getAllTeams,
+  updatePlayer,
+  deletePlayerById,
+} from "../services/dataService";
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 
@@ -11,12 +15,14 @@ const Players: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [teams, setTeams] = useState<iTeam[]>([]);
   const [selectedTeam, setSelectedTeam] = useState<string>("");
+
   const itemsPerPage = 8;
 
   useEffect(() => {
     const loadPlayers = async () => {
       const data = await getAllPlayers();
-      setPlayers(data);
+      const sortedData = data.sort((a, b) => a.name.localeCompare(b.name));
+      setPlayers(sortedData);
     };
     loadPlayers();
   }, []);
@@ -33,13 +39,10 @@ const Players: React.FC = () => {
     const nameMatch = player.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-
     const selectedTeamName = selectedTeam
       ? teams.find((team) => String(team.id) === selectedTeam)?.nome
       : null;
-
     const teamMatch = selectedTeam ? player.team === selectedTeamName : true;
-
     return nameMatch && teamMatch;
   });
 
@@ -53,6 +56,28 @@ const Players: React.FC = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const onPlayerUpdate = async (updatedPlayer: iPlayer) => {
+    await updatePlayer(updatedPlayer.id, updatedPlayer);
+
+    setPlayers((prevPlayers) =>
+      [
+        ...prevPlayers.map((player) =>
+          player.id === updatedPlayer.id ? updatedPlayer : player
+        ),
+      ].sort((a, b) => a.name.localeCompare(b.name))
+    );
+  };
+
+  const onPlayerDelete = async (id: number) => {
+    await deletePlayerById(id);
+
+    setPlayers((prevPlayers) =>
+      prevPlayers
+        .filter((player) => player.id !== id)
+        .sort((a, b) => a.name.localeCompare(b.name))
+    );
   };
 
   return (
@@ -97,6 +122,12 @@ const Players: React.FC = () => {
             ))}
           </select>
         </div>
+
+        <div className="adicionar-jogador-container">
+          <button className="adicionar-jogador-btn">
+            <a href={`/jogadores/new`}>Adicionar Jogador</a>
+          </button>
+        </div>
       </div>
 
       <div className="cards">
@@ -109,6 +140,8 @@ const Players: React.FC = () => {
                 key={player.id}
                 players={player}
                 teamLogo={teamLogo}
+                onPlayerUpdate={onPlayerUpdate}
+                onPlayerDelete={onPlayerDelete} // Passando a função de exclusão
               />
             );
           })
