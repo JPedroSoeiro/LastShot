@@ -5,7 +5,6 @@ import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 import "../utils/Crud.css";
 import CustomEdit from "../components/customEdit";
-import "../assets/grey-9026_256.gif";
 
 function FormCreate() {
   const navigate = useNavigate(); // Hook para navegação entre páginas
@@ -148,10 +147,10 @@ function FormCreate() {
         <button type="submit">
           {isLoading ? (
             <img
-              src="/assets/grey-9026_256.gif"
-              alt="logo"
-              width="150"
-              height="150"
+              src="https://i.gifer.com/ZNeT.gif"
+              alt="gif"
+              width="20"
+              height="20"
             />
           ) : (
             "Adicionar Jogador"

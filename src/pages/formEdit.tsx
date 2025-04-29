@@ -9,7 +9,6 @@ import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 import "../utils/Crud.css";
 import CustomEdit from "../components/customEdit";
-import "../assets/grey-9026_256.gif";
 
 function FormEdit() {
   const { id } = useParams<{ id: string }>();
@@ -26,7 +25,7 @@ function FormEdit() {
 
   const [teams, setTeams] = useState<iTeam[]>([]);
   const [errors, setErrors] = useState<any>({});
-  const [isLoading, setIsLoading] = useState(true); // Estado de loading
+  const [isLoading, setIsLoading] = useState(false); // Estado de loading
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -159,10 +158,10 @@ function FormEdit() {
         <button type="submit">
           {isLoading ? (
             <img
-              src="/assets/grey-9026_256.gif"
-              alt="logo"
-              width="150"
-              height="150"
+              src="https://i.gifer.com/ZNeT.gif"
+              alt="gif"
+              width="20"
+              height="20"
             />
           ) : (
             "Salvar alterações"
