@@ -1,5 +1,7 @@
 import React from "react";
-import "./teamsCard.css";
+import "../style/teamsCard.css";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 
 interface Team {
   id: number;
@@ -41,6 +43,14 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
         <p>
           <strong>Arena:</strong> {team.arena}
         </p>
+      </div>
+      <div className="botoes">
+        <button>
+          <FaEdit />
+        </button>
+        <button>
+          <MdDeleteOutline />
+        </button>
       </div>
     </div>
   );

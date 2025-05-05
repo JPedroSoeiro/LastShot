@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import PlayerCard from "../components/playersCard";
 import {
   getAllPlayers,
-  getAllTeams,
   updatePlayer,
   deletePlayerById,
 } from "../services/dataService";
+import { getAllTeams } from "../services/dataService";
+
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 

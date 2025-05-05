@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  getAllTeams,
-  getPlayerById,
-  updatePlayer,
-} from "../services/dataService";
+import { getPlayerById, updatePlayer } from "../services/dataService";
+import { getAllTeams } from "../services/dataService";
+
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
-import "../utils/Crud.css";
+import "../style/Crud.css";
 import CustomEdit from "../components/customEdit";
 
-function FormEdit() {
+function playersEdit() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -172,4 +170,4 @@ function FormEdit() {
   );
 }
 
-export default FormEdit;
+export default playersEdit;

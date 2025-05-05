@@ -1,5 +1,5 @@
 import React from "react";
-import "../utils/Crud.css";
+import "../style/Crud.css";
 
 interface CustomInputProps {
   type: string;

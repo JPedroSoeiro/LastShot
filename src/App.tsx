@@ -4,8 +4,9 @@ import MainLayout from "./layout/MainLayout";
 import Dashboard from "./pages/dashboard";
 import Teams from "./pages/teams";
 import Players from "./pages/players";
-import FormEdit from "./pages/formEdit";
-import FormCreate from "./pages/formCreate";
+import PlayersEdit from "./pages/playersEdit";
+import PlayersCreate from "./pages/playersCreate";
+import TeamsCreate from "./pages/teamsCreate";
 
 const App: React.FC = () => {
   return (
@@ -14,8 +15,9 @@ const App: React.FC = () => {
         <Route index element={<Dashboard />} />
         <Route path="times" element={<Teams />} />
         <Route path="jogadores" element={<Players />} />
-        <Route path="jogadores/create" element={<FormCreate />} />
-        <Route path="jogadores/:id" element={<FormEdit />} />
+        <Route path="jogadores/create" element={<PlayersCreate />} />
+        <Route path="jogadores/:id" element={<PlayersEdit />} />
+        <Route path="times/create" element={<TeamsCreate />} />
       </Route>
     </Routes>
   );

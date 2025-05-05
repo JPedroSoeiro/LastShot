@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllTeams, insertPlayer } from "../services/dataService";
+import { insertPlayer } from "../services/dataService";
+import { getAllTeams } from "../services/dataService";
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
-import "../utils/Crud.css";
+import "../style/Crud.css";
 import CustomEdit from "../components/customEdit";
 
-function FormCreate() {
+function playersCreate() {
   const navigate = useNavigate(); // Hook para navegação entre páginas
 
   const [player, setPlayer] = useState<Omit<iPlayer, "id">>({
@@ -89,7 +90,6 @@ function FormCreate() {
           onChange={handleChange} // Atualiza o valor do nome
         />
         {errors.name && <div className="error-message">{errors.name}</div>}{" "}
-        {/* Exibe erro se houver */}
         <h3>Idade</h3>
         <CustomEdit
           type="number"
@@ -99,7 +99,6 @@ function FormCreate() {
           onChange={handleChange} // Atualiza o valor da idade
         />
         {errors.age && <div className="error-message">{errors.age}</div>}{" "}
-        {/* Exibe erro se houver */}
         <h3>Posição</h3>
         <select
           name="position"
@@ -117,7 +116,6 @@ function FormCreate() {
         {errors.position && (
           <div className="error-message">{errors.position}</div>
         )}{" "}
-        {/* Exibe erro se houver */}
         <h3>Times</h3>
         <select
           name="team"
@@ -133,7 +131,6 @@ function FormCreate() {
           ))}
         </select>
         {errors.team && <div className="error-message">{errors.team}</div>}{" "}
-        {/* Exibe erro se houver */}
         <h3>Insira um link para a foto do jogador</h3>
         <CustomEdit
           type="text"
@@ -143,7 +140,6 @@ function FormCreate() {
           onChange={handleChange} // Atualiza o valor da imagem
         />
         {errors.image && <div className="error-message">{errors.image}</div>}{" "}
-        {/* Exibe erro se houver */}
         <button type="submit">
           {isLoading ? (
             <img
@@ -162,4 +158,4 @@ function FormCreate() {
   );
 }
 
-export default FormCreate;
+export default playersCreate;

@@ -1,5 +1,7 @@
 import React from "react";
-import "./playersCard.css";
+import "../style/playersCard.css";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 
 interface Player {
   id: number;
@@ -62,7 +64,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
               href={`/jogadores/${players.id}`}
               onClick={() => onPlayerUpdate(players)}
             >
-              Editar
+              <FaEdit />
             </a>
           </button>
           <button
@@ -74,7 +76,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
               }
             }}
           >
-            Deletar
+            <MdDeleteOutline />
           </button>
         </div>
       </div>
