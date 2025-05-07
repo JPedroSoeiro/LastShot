@@ -1,6 +1,5 @@
 import { supabase } from "./supabaseClient";
 import { iPlayer } from "../interfaces/iPlayer";
-import { iTeam } from "../interfaces/iTeam";
 
 // Função para buscar todos os jogadores
 export const getAllPlayers = async (): Promise<iPlayer[]> => {
@@ -34,7 +33,7 @@ export const updatePlayer = async (
   const { error } = await supabase
     .from("players")
     .update(updatedData)
-    .eq("id", id); // Verifique o ID do jogador
+    .eq("id", id);
   if (error) {
     console.error("Erro ao atualizar jogador:", error);
   }
@@ -54,14 +53,4 @@ export const deletePlayerById = async (id: number) => {
   if (error) {
     console.error("Erro ao excluir jogador:", error);
   }
-};
-
-// Função para buscar todos os times
-export const getAllTeams = async (): Promise<iTeam[]> => {
-  const { data, error } = await supabase.from("teams").select("*");
-  if (error) {
-    console.error("Erro ao buscar times:", error);
-    return [];
-  }
-  return data;
 };

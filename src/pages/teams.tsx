@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import TeamCard from "../components/teamsCard";
-import { getAllTeams } from "../services/dataService";
+import { getAllTeams } from "../services/teamService";
 import { iTeam } from "../interfaces/iTeam";
+import { deleteTeamById } from "../services/teamService"; // Importe a função de exclusão
 
 const Teams: React.FC = () => {
   const [teams, setTeams] = useState<iTeam[]>([]);
@@ -33,6 +34,16 @@ const Teams: React.FC = () => {
     setCurrentPage(page);
   };
 
+  // Função para deletar o time e atualizar a lista
+  const handleTeamDelete = async (id: number) => {
+    const success = await deleteTeamById(id); // Chama o serviço para deletar o time
+    if (success) {
+      setTeams((prevTeams) => prevTeams.filter((team) => team.id !== id)); // Atualiza o estado
+    } else {
+      alert("Erro ao deletar o time. Tente novamente.");
+    }
+  };
+
   return (
     <>
       <div>
@@ -57,10 +68,20 @@ const Teams: React.FC = () => {
           />
         </div>
       </form>
-
+      <div className="adicionar-jogador-container">
+        <button className="adicionar-jogador-btn">
+          <a href={`/times/create`}>Adicionar time</a>
+        </button>
+      </div>
       <div className="cards">
         {currentTeams.length > 0 ? (
-          currentTeams.map((team) => <TeamCard key={team.id} team={team} />)
+          currentTeams.map((team) => (
+            <TeamCard
+              key={team.id}
+              team={team}
+              onTeamDelete={handleTeamDelete}
+            />
+          ))
         ) : (
           <h2>Nenhum time encontrado.</h2>
         )}

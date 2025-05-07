@@ -16,7 +16,7 @@ interface PlayerCardProps {
   players: Player;
   teamLogo?: string;
   onPlayerUpdate: (updatedPlayer: Player) => void;
-  onPlayerDelete: (id: number) => void; // NOVO
+  onPlayerDelete: (id: number) => void;
 }
 
 const PlayerCard: React.FC<PlayerCardProps> = ({

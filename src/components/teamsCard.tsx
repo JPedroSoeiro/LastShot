@@ -2,6 +2,8 @@ import React from "react";
 import "../style/teamsCard.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { deleteTeamById } from "../services/teamService";
 
 interface Team {
   id: number;
@@ -15,9 +17,30 @@ interface Team {
 
 interface TeamCardProps {
   team: Team;
+  onTeamDelete: (id: number) => void;
 }
 
-const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
+const TeamCard: React.FC<TeamCardProps> = ({ team, onTeamDelete }) => {
+  const navigate = useNavigate();
+
+  const handleEditClick = () => {
+    navigate(`/times/${team.id}`);
+  };
+
+  const handleDeleteClick = async () => {
+    const confirmDelete = window.confirm(
+      "Tem certeza que quer deletar este time?"
+    );
+    if (confirmDelete) {
+      const success = await deleteTeamById(team.id);
+      if (success) {
+        onTeamDelete(team.id);
+      } else {
+        alert("Erro ao deletar o time. Tente novamente.");
+      }
+    }
+  };
+
   return (
     <div className="teamsCard">
       {team.logo && (
@@ -30,7 +53,6 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
       )}
       <div className="info">
         <h1>{team.nome}</h1>
-
         <p>
           <strong>Cidade:</strong> {team.cidade}
         </p>
@@ -45,10 +67,10 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
         </p>
       </div>
       <div className="botoes">
-        <button>
+        <button onClick={handleEditClick}>
           <FaEdit />
         </button>
-        <button>
+        <button onClick={handleDeleteClick}>
           <MdDeleteOutline />
         </button>
       </div>

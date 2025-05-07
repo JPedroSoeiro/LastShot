@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from "react";
-import api from "../services/api";
+import api from "../services/api"; // Certifique-se de que o Axios está configurado corretamente
 import "../style/Dashboard.css";
 
 const Dashboard: React.FC = () => {
-  const [quantidadePlayers, setQuantidadePlayers] = useState(null);
+  const [quantidadePlayers, setQuantidadePlayers] = useState<number | null>(
+    null
+  );
   const [quantidadeTeams, setQuantidadeTeams] = useState<number | null>(null);
 
   useEffect(() => {
     const buscarDados = async () => {
       try {
-        const respostaJogadores = await api.get("/jogadores");
-        const dadosJogadores = respostaJogadores.data;
-        const quantidadeJogadores = dadosJogadores.length;
-        setQuantidadePlayers(quantidadeJogadores);
+        // Acessando o endpoint correto que já fornece as contagens de jogadores e times
+        const resposta = await api.get("/dashboard");
 
-        const respostaTimes = await api.get("/times");
-        const dadosTimes = respostaTimes.data;
-        const quantidadeTimes = dadosTimes.length;
-        setQuantidadeTeams(quantidadeTimes);
+        // Verificar se a resposta contém os dados esperados
+        if (
+          resposta.data &&
+          resposta.data.players !== undefined &&
+          resposta.data.teams !== undefined
+        ) {
+          const dados = resposta.data;
+
+          // Atualizando os estados com os dados retornados
+          setQuantidadePlayers(dados.players);
+          setQuantidadeTeams(dados.teams);
+        } else {
+          console.error("Dados inválidos recebidos:", resposta.data);
+        }
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { insertPlayer } from "../services/dataService";
-import { getAllTeams } from "../services/dataService";
+import { insertPlayer } from "../services/playerService";
+import { getAllTeams } from "../services/teamService";
+
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 import "../style/Crud.css";
 import CustomEdit from "../components/customEdit";
 
 function playersCreate() {
-  const navigate = useNavigate(); // Hook para navegação entre páginas
+  const navigate = useNavigate();
 
   const [player, setPlayer] = useState<Omit<iPlayer, "id">>({
     name: "",
@@ -18,35 +19,31 @@ function playersCreate() {
     image: "",
   });
 
-  const [teams, setTeams] = useState<iTeam[]>([]); // Estado para armazenar os times
-  const [isLoading, setIsLoading] = useState(false); // Estado para controle de loading
-  const [errors, setErrors] = useState<any>({}); // Para armazenar mensagens de erro
+  const [teams, setTeams] = useState<iTeam[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<any>({});
 
-  // Efeito para buscar os times quando o componente for montado
   useEffect(() => {
     const fetchTeams = async () => {
-      const teamData = await getAllTeams(); // Chama o serviço para buscar os times
-      setTeams(teamData); // Atualiza o estado dos times
+      const teamData = await getAllTeams();
+      setTeams(teamData);
     };
 
-    fetchTeams(); // Executa a função de busca de times
-  }, []); // O array vazio faz com que essa função seja executada uma vez, no primeiro render
-
-  // Função para atualizar os dados do jogador quando o usuário alterar um campo
+    fetchTeams();
+  }, []);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target; // Extrai o nome do campo e seu valor
+    const { name, value } = e.target;
     setPlayer((prev) => ({
-      ...prev, // Preserva os dados anteriores
-      [name]: name === "age" ? Number(value) : value, // Converte a idade para número
+      ...prev,
+      [name]: name === "age" ? Number(value) : value,
     }));
   };
 
-  // Função de validação do formulário
   const validate = () => {
-    const newErrors: any = {}; // Objeto para armazenar erros
-    // Validações dos campos
+    const newErrors: any = {};
+
     if (player.name.length <= 3)
       newErrors.name = "O nome precisa ter mais de 3 caracteres.";
     if (player.age <= 17) newErrors.age = "A idade precisa ser acima de 17.";
@@ -54,23 +51,21 @@ function playersCreate() {
     if (!player.team) newErrors.team = "Selecione um time.";
     if (!player.image)
       newErrors.image = "É necessário fornecer um link para a imagem.";
-    setErrors(newErrors); // Atualiza o estado dos erros
-    return Object.keys(newErrors).length === 0; // Retorna true se não houver erros
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Função para enviar o formulário
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Impede o envio tradicional do formulário
-    if (!validate()) return; // Se houver erros, não envia o formulário
+    e.preventDefault();
+    if (!validate()) return;
 
-    setIsLoading(true); // Ativa o estado de carregamento
+    setIsLoading(true);
 
-    // Aguarda 2 segundos para simular o processo de carregamento
     setTimeout(async () => {
-      await insertPlayer(player); // Envia os dados do jogador
-      setIsLoading(false); // Desativa o estado de carregamento
-      navigate("/jogadores"); // Redireciona para a página de jogadores
-    }, 4000); // Atraso de 4 segundos (2000ms)
+      await insertPlayer(player);
+      setIsLoading(false);
+      navigate("/jogadores");
+    }, 4000);
   };
 
   return (
@@ -137,7 +132,7 @@ function playersCreate() {
           name="image"
           placeholder="URL da imagem"
           value={player.image || ""}
-          onChange={handleChange} // Atualiza o valor da imagem
+          onChange={handleChange}
         />
         {errors.image && <div className="error-message">{errors.image}</div>}{" "}
         <button type="submit">
@@ -151,7 +146,6 @@ function playersCreate() {
           ) : (
             "Adicionar Jogador"
           )}{" "}
-          {/* Exibe "Carregando..." enquanto o formulário está sendo enviado */}
         </button>
       </form>
     </>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getPlayerById, updatePlayer } from "../services/dataService";
-import { getAllTeams } from "../services/dataService";
-
+import { getPlayerById, updatePlayer } from "../services/playerService";
+import { getAllTeams } from "../services/teamService";
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
 import "../style/Crud.css";

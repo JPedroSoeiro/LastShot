@@ -4,8 +4,8 @@ import {
   getAllPlayers,
   updatePlayer,
   deletePlayerById,
-} from "../services/dataService";
-import { getAllTeams } from "../services/dataService";
+} from "../services/playerService";
+import { getAllTeams } from "../services/teamService";
 
 import { iPlayer } from "../interfaces/iPlayer";
 import { iTeam } from "../interfaces/iTeam";
