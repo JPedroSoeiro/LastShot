@@ -2,18 +2,25 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./pages/dashboard";
-import Teams from "./pages/teams";
-import Players from "./pages/players";
-import PlayersEdit from "./pages/playersEdit";
-import PlayersCreate from "./pages/playersCreate";
-import TeamsCreate from "./pages/teamsCreate";
-import TeamsEdit from "./pages/teamsEdit";
+import Teams from "./pages/teams/teams";
+import Players from "./pages/players/players";
+import PlayersEdit from "./pages/players/playersEdit";
+import PlayersCreate from "./pages/players/playersCreate";
+import TeamsCreate from "./pages/teams/teamsCreate";
+import TeamsEdit from "./pages/teams/teamsEdit";
+import Login from "./pages/auth/login.tsx";
+import Register from "./pages/auth/register.tsx";
+import AuthLayout from "./layout/AuthLayout";
 
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<Dashboard />} />
+      <Route path="/" element={<AuthLayout />}>
+        <Route index element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Route>
+      <Route element={<MainLayout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="jogadores" element={<Players />} />
         <Route path="jogadores/create" element={<PlayersCreate />} />
         <Route path="jogadores/:id" element={<PlayersEdit />} />

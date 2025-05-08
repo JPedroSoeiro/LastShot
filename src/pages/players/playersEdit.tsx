@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { insertPlayer } from "../services/playerService";
-import { getAllTeams } from "../services/teamService";
+import { useParams, useNavigate } from "react-router-dom";
+import { getPlayerById, updatePlayer } from "../../services/playerService";
+import { getAllTeams } from "../../services/teamService";
+import { iPlayer } from "../../interfaces/iPlayer";
+import { iTeam } from "../../interfaces/iTeam";
+import "../../style/Crud.css";
+import CustomEdit from "../../components/customEdit";
 
-import { iPlayer } from "../interfaces/iPlayer";
-import { iTeam } from "../interfaces/iTeam";
-import "../style/Crud.css";
-import CustomEdit from "../components/customEdit";
-
-function playersCreate() {
+function playersEdit() {
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const [player, setPlayer] = useState<Omit<iPlayer, "id">>({
+  const [player, setPlayer] = useState<iPlayer>({
+    id: 0,
     name: "",
     age: 0,
     position: "",
@@ -20,8 +21,8 @@ function playersCreate() {
   });
 
   const [teams, setTeams] = useState<iTeam[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<any>({});
+  const [isLoading, setIsLoading] = useState(false); // Estado de loading
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -29,8 +30,17 @@ function playersCreate() {
       setTeams(teamData);
     };
 
+    const fetchPlayer = async () => {
+      if (id) {
+        const playerData = await getPlayerById(Number(id));
+        if (playerData) setPlayer(playerData);
+      }
+    };
+
     fetchTeams();
-  }, []);
+    fetchPlayer();
+  }, [id]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -43,7 +53,6 @@ function playersCreate() {
 
   const validate = () => {
     const newErrors: any = {};
-
     if (player.name.length <= 3)
       newErrors.name = "O nome precisa ter mais de 3 caracteres.";
     if (player.age <= 17) newErrors.age = "A idade precisa ser acima de 17.";
@@ -57,20 +66,23 @@ function playersCreate() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate()) return; // Se houver erro, não submete o formulário
 
-    setIsLoading(true);
+    setIsLoading(true); // Ativa o loading
 
+    // Aguarda 2 segundos para simular o carregamento
     setTimeout(async () => {
-      await insertPlayer(player);
-      setIsLoading(false);
-      navigate("/jogadores");
-    }, 4000);
+      if (id) {
+        await updatePlayer(Number(id), player);
+        setIsLoading(false); // Desativa o loading
+        navigate("/jogadores"); // Redireciona para a página de jogadores
+      }
+    }, 2000); // Espera 2 segundos
   };
 
   return (
     <>
-      <h1>Adicionar Novo Jogador</h1>
+      <h1>Editar Jogador</h1>
       <hr />
       <button className="returnButton">
         <a href={`/jogadores`}>Voltar</a>
@@ -82,18 +94,20 @@ function playersCreate() {
           name="name"
           placeholder="Nome"
           value={player.name}
-          onChange={handleChange} // Atualiza o valor do nome
+          onChange={handleChange}
         />
-        {errors.name && <div className="error-message">{errors.name}</div>}{" "}
+        {errors.name && <div className="error-message">{errors.name}</div>}
+
         <h3>Idade</h3>
         <CustomEdit
           type="number"
           name="age"
           placeholder="Idade"
           value={player.age}
-          onChange={handleChange} // Atualiza o valor da idade
+          onChange={handleChange}
         />
-        {errors.age && <div className="error-message">{errors.age}</div>}{" "}
+        {errors.age && <div className="error-message">{errors.age}</div>}
+
         <h3>Posição</h3>
         <select
           name="position"
@@ -110,7 +124,8 @@ function playersCreate() {
         </select>
         {errors.position && (
           <div className="error-message">{errors.position}</div>
-        )}{" "}
+        )}
+
         <h3>Times</h3>
         <select
           name="team"
@@ -125,7 +140,8 @@ function playersCreate() {
             </option>
           ))}
         </select>
-        {errors.team && <div className="error-message">{errors.team}</div>}{" "}
+        {errors.team && <div className="error-message">{errors.team}</div>}
+
         <h3>Insira um link para a foto do jogador</h3>
         <CustomEdit
           type="text"
@@ -134,7 +150,8 @@ function playersCreate() {
           value={player.image || ""}
           onChange={handleChange}
         />
-        {errors.image && <div className="error-message">{errors.image}</div>}{" "}
+        {errors.image && <div className="error-message">{errors.image}</div>}
+
         <button type="submit">
           {isLoading ? (
             <img
@@ -144,12 +161,12 @@ function playersCreate() {
               height="20"
             />
           ) : (
-            "Adicionar Jogador"
-          )}{" "}
+            "Salvar alterações"
+          )}
         </button>
       </form>
     </>
   );
 }
 
-export default playersCreate;
+export default playersEdit;

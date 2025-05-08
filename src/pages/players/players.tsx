@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import PlayerCard from "../components/playersCard";
+import PlayerCard from "../../components/playersCard";
 import {
   getAllPlayers,
   updatePlayer,
   deletePlayerById,
-} from "../services/playerService";
-import { getAllTeams } from "../services/teamService";
+} from "../../services/playerService";
+import { getAllTeams } from "../../services/teamService";
 
-import { iPlayer } from "../interfaces/iPlayer";
-import { iTeam } from "../interfaces/iTeam";
+import { iPlayer } from "../../interfaces/iPlayer";
+import { iTeam } from "../../interfaces/iTeam";
 
 const Players: React.FC = () => {
   const [players, setPlayers] = useState<iPlayer[]>([]);
@@ -147,7 +147,12 @@ const Players: React.FC = () => {
             );
           })
         ) : (
-          <h2>Nenhum jogador encontrado.</h2>
+          <img
+            src="https://i.gifer.com/ZNeT.gif"
+            alt="gif"
+            width="30"
+            height="30"
+          />
         )}
       </div>
 

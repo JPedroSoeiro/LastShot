@@ -1,0 +1,15 @@
+.cardInput {
+  background-color: #1f2937;
+  padding: 10px;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  border-radius: 10px;
+  color: #e7d5e7;
+  font-family: "Source Sans 3";
+  font-size: 11px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

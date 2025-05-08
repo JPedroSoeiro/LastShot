@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../App.css";
-import TeamCard from "../components/teamsCard";
-import { getAllTeams } from "../services/teamService";
-import { iTeam } from "../interfaces/iTeam";
-import { deleteTeamById } from "../services/teamService"; // Importe a função de exclusão
+import "../../App.css";
+import TeamCard from "../../components/teamsCard";
+import { getAllTeams } from "../../services/teamService";
+import { iTeam } from "../../interfaces/iTeam";
+import { deleteTeamById } from "../../services/teamService"; // Importe a função de exclusão
 
 const Teams: React.FC = () => {
   const [teams, setTeams] = useState<iTeam[]>([]);
@@ -83,7 +83,12 @@ const Teams: React.FC = () => {
             />
           ))
         ) : (
-          <h2>Nenhum time encontrado.</h2>
+          <img
+            src="https://i.gifer.com/ZNeT.gif"
+            alt="gif"
+            width="30"
+            height="30"
+          />
         )}
       </div>
 

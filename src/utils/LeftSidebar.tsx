@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./LeftSidebar.css";
+import "./../style/LeftSidebar.css";
 import lastShotLogo from "../assets/lastShotLogo.png";
 
 const LeftSidebar: React.FC = () => {
@@ -11,7 +11,7 @@ const LeftSidebar: React.FC = () => {
       <ul>
         <li>
           <NavLink
-            to="/"
+            to="/dashboard"
             className={({ isActive }) =>
               isActive ? "nav-link active" : "nav-link"
             }
@@ -40,6 +40,11 @@ const LeftSidebar: React.FC = () => {
           </NavLink>
         </li>
       </ul>
+      <div className="logout">
+        <button>
+          <a href={`/`}>Sair</a>
+        </button>
+      </div>
     </div>
   );
 };

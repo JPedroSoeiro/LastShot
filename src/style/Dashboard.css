@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
 .totals {
   max-width: 80%;
   height: 30%;
@@ -17,4 +19,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.count {
+  font-size: 50px;
+  font-family: "Source Sans 3";
+  color: #ef0d0d;
+}
+
+.logout {
+  width: 100%;
+  margin-top: 580px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.logout button {
+  width: 80%;
 }

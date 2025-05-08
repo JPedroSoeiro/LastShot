@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"; // useParams para pegar o id da URL
-import { getTeamById, updateTeam } from "../services/teamService"; // Funções para pegar e atualizar time
-import { iTeam } from "../interfaces/iTeam"; // Interface do time
-import "../style/Crud.css";
-import CustomEdit from "../components/customEdit";
+import { getTeamById, updateTeam } from "../../services/teamService"; // Funções para pegar e atualizar time
+import { iTeam } from "../../interfaces/iTeam"; // Interface do time
+import "../../style/Crud.css";
+import CustomEdit from "../../components/customEdit";
 
 function TeamsEdit() {
   const navigate = useNavigate();

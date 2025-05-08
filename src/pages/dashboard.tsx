@@ -43,26 +43,26 @@ const Dashboard: React.FC = () => {
         <div>
           <h2>Jogadores:</h2>
           {quantidadePlayers !== null ? (
-            <p>{quantidadePlayers}</p>
+            <p className="count">{quantidadePlayers}</p>
           ) : (
             <img
               src="https://i.gifer.com/ZNeT.gif"
               alt="gif"
-              width="30"
-              height="30"
+              width="40"
+              height="40"
             />
           )}
         </div>
         <div>
           <h2>Times:</h2>
           {quantidadeTeams !== null ? (
-            <p>{quantidadeTeams}</p>
+            <p className="count">{quantidadeTeams}</p>
           ) : (
             <img
               src="https://i.gifer.com/ZNeT.gif"
               alt="gif"
-              width="30"
-              height="30"
+              width="40"
+              height="40"
             />
           )}
         </div>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { insertTeam } from "../services/teamService"; // Função para inserir time no Supabase
-import { iTeam } from "../interfaces/iTeam"; // Interface do time
-import "../style/Crud.css";
-import CustomEdit from "../components/customEdit";
+import { insertTeam } from "../../services/teamService"; // Função para inserir time no Supabase
+import { iTeam } from "../../interfaces/iTeam"; // Interface do time
+import "../../style/Crud.css";
+import CustomEdit from "../../components/customEdit";
 
 function TeamsCreate() {
   const navigate = useNavigate();
