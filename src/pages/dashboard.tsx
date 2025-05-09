@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api"; // Certifique-se de que o Axios está configurado corretamente
 import "../style/Dashboard.css";
+import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
   const [quantidadePlayers, setQuantidadePlayers] = useState<number | null>(
@@ -36,8 +38,16 @@ const Dashboard: React.FC = () => {
     buscarDados();
   }, []);
 
+  const { user } = useAuth(); // Acessando os dados do usuário
+
+  if (!user) {
+    // Se não estiver logado, redireciona para o login usando Navigate
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="totals">
+      <h1>Bem-vindo, {user.name}</h1>
       <h1>Quantidade de;</h1>
       <div className="card">
         <div>
