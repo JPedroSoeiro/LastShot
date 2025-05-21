@@ -15,6 +15,7 @@
 .sidebar ul {
   list-style-type: none;
   padding: 0;
+  margin-bottom: 350px;
 }
 
 .sidebar li {

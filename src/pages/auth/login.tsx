@@ -1,50 +1,75 @@
-import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthProvider";
+import CustomEdit from "../../components/customEdit";
 import { useNavigate } from "react-router-dom";
+import lastShotLogo from "../../assets/lastShotLogo.png";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { login, user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    // Envia as credenciais para o backend
-    const response = await fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      await login(email, password);
 
-    if (response.ok) {
-      // Recebe o token JWT e os dados do usuário do backend
-      const { token, user } = await response.json();
-      login({ ...user, token });
-      navigate("/dashboard"); // Redireciona para o Dashboard
-    } else {
-      alert("Credenciais inválidas");
+      setTimeout(() => {
+        setIsSubmitting(false);
+      }, 2000);
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("Erro ao realizar o login.");
+      console.error(error);
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        placeholder="Insira o seu email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Insira sua senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Entrar</button>
+    <form className="cardInput" onSubmit={handleLogin}>
+      <img src={lastShotLogo} alt="logo" width="150" height="150" />
+      <h1>Login</h1>
+      <div>
+        <h3>Email</h3>
+        <CustomEdit
+          type="email"
+          name="email"
+          placeholder="Insira o seu email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <h3>Senha</h3>
+        <CustomEdit
+          type="password"
+          name="password"
+          placeholder="Insira sua senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <img
+            src="https://i.gifer.com/ZNeT.gif"
+            alt="Carregando..."
+            width="20"
+            height="20"
+          />
+        ) : (
+          "Entrar"
+        )}
+      </button>
     </form>
   );
 };

@@ -1,14 +1,23 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./../style/LeftSidebar.css";
 import lastShotLogo from "../assets/lastShotLogo.png";
+import { useAuth } from "../context/AuthProvider";
 
 const LeftSidebar: React.FC = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // remove token e user
+    navigate("/"); // redireciona para a página inicial
+  };
+
   return (
     <div className="sidebar">
       <img src={lastShotLogo} alt="logo" width="150" height="150" />
       <hr />
-      <ul>
+      <ul id="list">
         <li>
           <NavLink
             to="/dashboard"
@@ -40,10 +49,8 @@ const LeftSidebar: React.FC = () => {
           </NavLink>
         </li>
       </ul>
-      <div className="logout">
-        <button>
-          <a href={`/`}>Sair</a>
-        </button>
+      <div>
+        <button onClick={handleLogout}>Sair</button>
       </div>
     </div>
   );

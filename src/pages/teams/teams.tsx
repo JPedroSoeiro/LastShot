@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
-import TeamCard from "../../components/teamsCard";
+import TeamCard from "../../components/card/teamsCard";
 import { getAllTeams } from "../../services/teamService";
 import { iTeam } from "../../interfaces/iTeam";
 import { deleteTeamById } from "../../services/teamService"; // Importe a função de exclusão

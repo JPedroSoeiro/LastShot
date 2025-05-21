@@ -2,30 +2,30 @@ import "../../style/auth.css";
 import CustomEdit from "../../components/customEdit";
 import lastShotLogo from "../../assets/lastShotLogo.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate é o correto no React Router v6
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../../services/authService";
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate(); // useNavigate é o hook correto para navegação no React Router v6
+
+  const navigate = useNavigate(); // Usando o useNavigate
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("http://seu-backend.com/api/register", {
-      method: "POST",
-      body: JSON.stringify({ username, email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const newData = {
+        username,
+        email,
+        password,
+      };
 
-    if (response.ok) {
-      alert("Cadastro realizado com sucesso!");
-      navigate("/login"); // Usando navigate ao invés de history.push no React Router v6
-    } else {
-      alert("Erro ao criar conta");
+      await createUser(newData);
+      navigate("/"); // Redireciona após o cadastro
+    } catch (error) {
+      console.error("Erro ao cadastrar:", error);
     }
   };
 

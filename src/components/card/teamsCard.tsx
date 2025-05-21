@@ -1,9 +1,9 @@
 import React from "react";
-import "../style/teamsCard.css";
+import "../../style/teamsCard.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { deleteTeamById } from "../services/teamService";
+import { deleteTeamById } from "../../services/teamService";
 
 interface Team {
   id: number;

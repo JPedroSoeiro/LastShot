@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PlayerCard from "../../components/playersCard";
+import PlayerCard from "../../components/card/playersCard";
 import {
   getAllPlayers,
   updatePlayer,

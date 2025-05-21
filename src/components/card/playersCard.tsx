@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/playersCard.css";
+import "../../style/playersCard.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 
