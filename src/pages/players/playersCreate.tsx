@@ -84,7 +84,7 @@ function playersCreate() {
           value={player.name}
           onChange={handleChange} // Atualiza o valor do nome
         />
-        {errors.name && <div className="error-message">{errors.name}</div>}{" "}
+        {errors.name && <div className="error-message">{errors.name}</div>}
         <h3>Idade</h3>
         <CustomEdit
           type="number"
